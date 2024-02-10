@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy  import SQLAlchemy
 from sqlalchemy import create_engine, MetaData
-# from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session, declarative_base
 from sqlalchemy.engine.url import URL
 import os
@@ -28,21 +28,12 @@ CONNECTION_STRING = f"snowflake://{user}:{password}@{account}/{database}/{schema
 # Create the engine
 engine = create_engine(CONNECTION_STRING)
 
-if  engine.connect :
-    print("connection succeded for user :", user, " on database : ", database)
+try:
+    with engine.connect() as conn:
+        print("Connection succeeded for user:", user, "on database:", database)
+except Exception as e:
+    print("Connection failed:", e)
 
-# engine_url = URL.create(
-#     drivername="snowflake", 
-#     username=user,
-#     password=password,
-#     host=account,
-#     database=database,
-#     query={
-#         'warehouse': warehouse,
-#         'schema': schema
-#     }
-# )
-# engine = create_engine(engine_url)
 SessionLocal = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
 Base = declarative_base()
 

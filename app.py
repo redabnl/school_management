@@ -32,7 +32,7 @@ def register_student():
         new_student = Students(
             first_name=student_data['first_name'], 
             last_name=student_data['last_name'] ,
-            email=student_data['email'], 
+            mail=student_data['email'], 
             password_hash=generate_password_hash(student_data['password']))
         
         # Add new student to the session and commit
