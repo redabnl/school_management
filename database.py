@@ -15,25 +15,34 @@ account = os.getenv('SNOWFLAKE_ACCOUNT')
 warehouse = os.getenv('SNOWFLAKE_WAREHOUSE')
 database = os.getenv('SNOWFLAKE_DATABASE')
 schema = os.getenv('SNOWFLAKE_SCHEMA')
+role = os.getenv('SNOWFLAKE_ROLE')
 
 
 
 if not all([user, password, account, warehouse, database, schema]):
     raise ValueError("Snowflake environment variables are not set properly.")
 
+# Construct the connection string
+CONNECTION_STRING = f"snowflake://{user}:{password}@{account}/{database}/{schema}?warehouse={warehouse}&role={role}"
 
-engine_url = URL.create(
-    drivername="snowflake", 
-    username=user,
-    password=password,
-    host=account,
-    database=database,
-    query={
-        'warehouse': warehouse,
-        'schema': schema
-    }
-)
-engine = create_engine(engine_url)
+# Create the engine
+engine = create_engine(CONNECTION_STRING)
+
+if  engine.connect :
+    print("connection succeded for user :", user, " on database : ", database)
+
+# engine_url = URL.create(
+#     drivername="snowflake", 
+#     username=user,
+#     password=password,
+#     host=account,
+#     database=database,
+#     query={
+#         'warehouse': warehouse,
+#         'schema': schema
+#     }
+# )
+# engine = create_engine(engine_url)
 SessionLocal = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
 Base = declarative_base()
 

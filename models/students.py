@@ -1,10 +1,10 @@
 from database import Base
 from sqlalchemy import Column, Integer, String
 
-class Student(Base):
+class Students(Base):
     __tablename__ = 'students'
 
-    id = Column(Integer, primary_key=True)
+    student_id = Column(Integer, primary_key=True)
     first_name = Column(String)
     last_name = Column(String)
     email = Column(String, unique=True)
