@@ -29,10 +29,11 @@ CONNECTION_STRING = f"snowflake://{user}:{password}@{account}/{database}/{schema
 engine = create_engine(CONNECTION_STRING)
 
 try:
-    with engine.connect() as conn:
-        print("Connection succeeded for user:", user, "on database:", database)
-except Exception as e:
-    print("Connection failed:", e)
+    with  engine.connect() :
+        print("connection succeded for user :", user, " on database : ", database)
+except Exception as E :
+    print("error connecting to db:", database , "error : ", E)
+
 
 SessionLocal = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
 Base = declarative_base()

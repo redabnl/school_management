@@ -7,7 +7,7 @@ class Students(Base):
     id_student = Column(Integer, primary_key=True)
     first_name = Column(String)
     last_name = Column(String)
-    email = Column(String, unique=True)
+    mail = Column(String, unique=True)
     password_hash = Column(String)
     sessionA = Column(String)
     status = Column(String)
