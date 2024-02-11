@@ -1,7 +1,7 @@
 import os 
 
 class Config(object):
-    SECRERT_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
+    SECRERT_KEY = os.environ.get('SECRET_KEY') 
     
 class DevelopementConfig(Config):
     DEBUG = True
