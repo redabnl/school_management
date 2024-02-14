@@ -3,7 +3,7 @@ import os
 class Config(object):
     SECRERT_KEY = os.environ.get('SECRET_KEY') 
     
-class DevelopementConfig(Config):
+class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False

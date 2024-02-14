@@ -5,6 +5,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session, declarative_base
 from sqlalchemy.engine.url import URL
 import os
+import snowflake.connector
+# import logging
+
+# logging.basicConfig(level=logging.DEBUG)
 
 from dotenv import load_dotenv
 load_dotenv() 
@@ -18,6 +22,21 @@ schema = os.getenv('SNOWFLAKE_SCHEMA')
 role = os.getenv('SNOWFLAKE_ROLE')
 
 
+
+# try:
+#     conn = snowflake.connector.connect(**conn_info)
+#     print("Connection successful")
+#     cur = conn.cursor()
+#     cur.execute("SELECT CURRENT_VERSION()")
+#     one_row = cur.fetchone()
+#     print(one_row)
+# except Exception as e:
+#     print(e)
+# finally:
+#     if cur:
+#         cur.close()
+#     if conn:
+#         conn.close()
 
 if not all([user, password, account, warehouse, database, schema]):
     raise ValueError("Snowflake environment variables are not set properly.")
