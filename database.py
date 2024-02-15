@@ -23,21 +23,6 @@ role = os.getenv('SNOWFLAKE_ROLE')
 
 
 
-# try:
-#     conn = snowflake.connector.connect(**conn_info)
-#     print("Connection successful")
-#     cur = conn.cursor()
-#     cur.execute("SELECT CURRENT_VERSION()")
-#     one_row = cur.fetchone()
-#     print(one_row)
-# except Exception as e:
-#     print(e)
-# finally:
-#     if cur:
-#         cur.close()
-#     if conn:
-#         conn.close()
-
 if not all([user, password, account, warehouse, database, schema]):
     raise ValueError("Snowflake environment variables are not set properly.")
 

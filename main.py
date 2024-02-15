@@ -1,14 +1,9 @@
-# main.py
-from app import app
-from .app.controllers.student_controller import register_student
+from flask import Flask 
+from dotenv import load_dotenv
+load_dotenv()
 
-@app.route('/')
-def index():
-    return "Welcome to the School Management App iRead"
-
-@app.route('/register', methods=['POST'])
-def register():
-    return register_student()
+app = Flask(__name__)
+app.run(debug=True)
 
 if __name__ == '__main__':
     app.run()

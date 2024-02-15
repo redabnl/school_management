@@ -1,11 +1,32 @@
-# app/__init__.py
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from database import Base, engine
+
+from flask import Flask 
 from config import DevelopmentConfig
+from .extensions import db
+from app.controllers.admin_controller import register_user
+from app.models import *
+from dotenv import load_dotenv
+load_dotenv()
+
 
 app = Flask(__name__)
-app.config.from_object(DevelopmentConfig)
-db = SQLAlchemy(app)
+app.config.from_object('app.config.DevelopmentConfig')
 
-Base.metadata.create_all(bind=engine)  # Create tables if they don't exist
+db.init_app(app)
+
+
+
+@app.route('/')
+def index():
+    return "Welcome to the School Management App iRead"
+
+@app.route('/register_student', methods='POST')
+def register_student():
+    return register_user('student')
+
+@app.route('/register_professor', methods='POST')
+def register_professor():
+    return register_user('professor')
+
+
+
+  

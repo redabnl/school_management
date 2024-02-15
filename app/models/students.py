@@ -1,13 +1,9 @@
-from database import Base
-from sqlalchemy import Column, Integer, String
+# from database import Base
+# from sqlalchemy import Column, Integer, String
+from app.extensions import db
+from .users import Users
 
-class Students(Base):
+class Students(Users):
     __tablename__ = 'students'
-
-    id_student = Column(Integer, primary_key=True)
-    first_name = Column(String)
-    last_name = Column(String)
-    mail = Column(String, unique=True)
-    password_hash = Column(String)
-    sessionA = Column(String)
-    status = Column(String)
+    sessionA = db.Column(db.String)
+    status = db.Column(db.String)
