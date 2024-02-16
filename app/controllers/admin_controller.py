@@ -15,7 +15,7 @@ def register_user(user_type):
         }), 400
     
     #check if all the needed fields are in
-    required_fields = ['first_name','last_name', 'email', 'password']
+    required_fields = ['id_user','first_name','last_name', 'mail', 'password']
     if not all(field  in data for field in required_fields):
         return jsonify({
             'success' : False,
@@ -26,18 +26,23 @@ def register_user(user_type):
     
     if user_type == 'student' :
         new_user = Students(
-            first_name=data['first_name'],
-            last_name=data['last_name'],
-            email=data['email'],
-            password_hash=hashed_pwd
+        ID_STUDENT = data['id_user'],
+        FIRST_NAME=data['first_name'],
+        LAST_NAME=data['last_name'],
+        MAIL=data['mail'],
+        PASSWORD=hashed_pwd,  # Make sure this is the correct field for the password hash
+        STATUS='active',  # Assuming new students start as 'active'
+        SESSIONA=None
         )
     elif user_type == 'professor':
         new_user = Professors(
-            first_name=data['first_name'],
-            last_name=data['last_name'],
-            email=data['email'],
-            password_hash=hashed_pwd
-        )
+            ID_PROFESSOR = data['id_user'],
+            FIRST_NAME=data['first_name'],
+            LAST_NAME=data['last_name'],
+            MAIL=data['mail'],
+            PASSWORD=hashed_pwd, 
+            DEPARTEMENT = ['departement']
+            )
     else:
         return jsonify({"error": "Invalid user type"}), 400
     

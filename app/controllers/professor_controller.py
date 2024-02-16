@@ -1,17 +1,16 @@
 from flask import request, jsonify, session
 from werkzeug.security import check_password_hash
 from app.extensions import db 
-from app.models.students import Students
-
+from app.models.professors import Professors
 
     
-def login_student():
+def login_professor():
     data = request.get_json()
-    student = Students.query.filter_by(MAIL=data['mail']).first()
+    professor = Professors.query.filter_by(MAIL=data['mail']).first()
     
-    if student and check_password_hash(student.PASSWORD, data["password)"]):
-        #if the student is found 
-        session['student_id'] = student.ID_STUDENT
+    if professor and check_password_hash(professor.PASSWORD, data["password)"]):
+        #if the professors is found 
+        session['professor_id'] = professor.ID_PROFESSOR
         return jsonify({
             'success' : True,
             "message" : "logged in successfully"
