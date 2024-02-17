@@ -1,7 +1,7 @@
-from database import Base
+from app.extensions import db 
 from sqlalchemy import Column, Integer, String, Number
 
-class Professors(Base):
+class Professors(db.Model):
     __tablename__ = 'courses'
 
     id_course = Column(Integer, primary_key=True)

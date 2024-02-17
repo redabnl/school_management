@@ -7,8 +7,9 @@ from app.models.professors import Professors
 def login_professor():
     data = request.get_json()
     professor = Professors.query.filter_by(MAIL=data['mail']).first()
+    pwd = data.get("password")
     
-    if professor and check_password_hash(professor.PASSWORD, data["password)"]):
+    if professor and check_password_hash(professor.PASSWORD, pwd):
         #if the professors is found 
         session['professor_id'] = professor.ID_PROFESSOR
         return jsonify({

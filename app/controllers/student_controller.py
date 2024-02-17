@@ -8,8 +8,9 @@ from app.models.students import Students
 def login_student():
     data = request.get_json()
     student = Students.query.filter_by(MAIL=data['mail']).first()
+    pwd = data.get("password")
     
-    if student and check_password_hash(student.PASSWORD, data["password)"]):
+    if student and check_password_hash(student.PASSWORD, pwd):
         #if the student is found 
         session['student_id'] = student.ID_STUDENT
         return jsonify({
