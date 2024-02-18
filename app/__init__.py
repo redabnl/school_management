@@ -2,7 +2,7 @@ from flask import Flask
 from .extensions import db
 from config import DevelopmentConfig
 from app.controllers.admin_controller import register_user
-from app.controllers.student_controller import login_student
+from app.controllers.student_controller import login_student, search_student
 from app.controllers.professor_controller import login_professor
 from app.models import *
 import os
@@ -37,6 +37,11 @@ def  student_login():
 @app.route('/professor_login', methods=['POST'])
 def professor_login():
     return login_professor()
+
+# @app.route('/search_student/', methods=['GET'])
+# def student_search():
+#     return search_student()
+
 
 
   
