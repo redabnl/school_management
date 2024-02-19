@@ -1,7 +1,13 @@
-.env
-venv/
-confif.py
-dbtest.py
-test.py
-tests/
-cahier_de_charge/
+# .env
+# venv/
+# confif.py
+# dbtest.py
+# test.py
+# tests/
+# cahier_de_charge/
+
+backend/cahier_de_charge/
+backend/.env
+backend/venv/
+backend/tests/
+
