@@ -1,5 +1,6 @@
 from flask import Flask 
-from .extensions import db
+from flask_cors import CORS
+from app.extensions import db
 from config import DevelopmentConfig
 from app.controllers.admin_controller import register_user
 from app.controllers.student_controller import login_student, search_student
@@ -12,6 +13,7 @@ load_dotenv()
 
 
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 app.secret_key = os.environ.get('SECRET_KEY', 'fallback_secret_key')
 db.init_app(app)
