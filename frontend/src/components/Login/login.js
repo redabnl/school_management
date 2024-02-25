@@ -4,85 +4,79 @@ import  './login.css'
 import { useNavigate } from 'react-router-dom';
 
 
-function LoginPage() {
+const LoginForm = () => {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate()
+  const [error, setError] = useState('');
+  const [isProfessor, setIsProfessor] = useState(false);
+
+  const handleToggleChange = () => {
+    setIsProfessor(!isProfessor);
+  };
+
+  const handleMailChange = (event) => {
+    setMail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
 
 
-  const [isProfessor,setIsProfessor] = useState(false)
-
-  const handleSubmit = async (e)=>{
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const endpoint = isProfessor ? 'http://localhost:5000/professor_login' : 'http://localhost:5000/student_login';
     try {
-      // const backendURL = process.env.REACT_APP_BACKEND_URL;
-      const response = await axios.post(`https://localhost:5000s/login`, {
-        mail:mail,
-        password:password,
-      })
 
-      if (response.data.success) {
-        // Handle successful login here
-        console.log(response.data.message);
-        navigate('/home_profil');
-        // Redirect the professor or store login state
-      } else {
-        // Update your state to show an error message
-        setErrorMessage(response.data.message);
-      }
-      
-    }catch(error){
-      setErrorMessage('An error occurred. Please try again later.');
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ mail: mail, password: password}),
+    });
 
-    }}
+    const data = await response.json()
 
-    return (
-      <div className="login-container">
-      <form onSubmit={handleSubmit} className="login-form">
-        {/* <label className="switch"> */}
-          {/* <input
-            type="checkbox"
-            checked={isProfessor}
-            onChange={() => setIsProfessor(!isProfessor)}
-          />
-          <span className="slider round"></span>
-        </label>
-         */}
-        <div className="switch-container">
-        <label className="switch-label">
-          <span className="switch-description">{isProfessor ? 'Professor' : 'Student'}</span>
-          <input
-            type="checkbox"
-            checked={isProfessor}
-            onChange={() => setIsProfessor(!isProfessor)}
-          />
-          <h2>{isProfessor ? 'Professor' : 'Student'} Login</h2>
-    <span className="switch-slider round"></span>
-  </label>
-</div>
-          <div>
-              <label>MAIL:</label>
-              <input
-                  type="email"
-                  value={mail}
-                  onChange={(e) => setMail(e.target.value)}
-              />
-          </div>
-          <div>
-              <label>Password:</label>
-              <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-              />
-          </div>
-          {errorMessage && <p>{errorMessage}</p>}
-          <button type="submit">Login</button>
+    if (response.ok) {
+      // Redirect to home profile
+      console.log('Login Success:', data);
+      // Redirect logic here, e.g., window.location.href = '/dashboard';
+    } 
+    else{
+      console.log('error finding data :', data)
+      setError(data.message || 'Invalid credentials or server error');
+    }
+  } catch (err){
+    console.log('error :', err)
+
+  }
+  };
+
+  return (
+    <div className={`login-form ${isProfessor ? 'professional' : 'student-friendly'}`}>
+      <label className="switch">
+        <input type="checkbox" checked={isProfessor} onChange={handleToggleChange} />
+        <span className="slider round"></span>
+      </label>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>
+            Mail:
+            <input type="mail" value={mail} onChange={handleMailChange} required />
+          </label>
+        </div>
+        <div>
+          <label>
+            Password:
+            <input type="password" value={password} onChange={handlePasswordChange} required />
+          </label>
+        </div>
+        <button type="submit">Login</button>
+        {error && <p className="error">{error}</p>}
       </form>
-      </div>
+    </div>
   );
-}
+};
 
-
-export default LoginPage
+export default LoginForm

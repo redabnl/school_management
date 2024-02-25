@@ -1,58 +1,66 @@
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  /* background: url('/path-to-your-background-image.jpg') no-repeat center center fixed; */
-  background-size: cover;
-}
-
+/* General form styling */
 .login-form {
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+  background-color: #fff;
 }
 
-.login-form input[type="email"],
-.login-form input[type="password"] {
+.login-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-form input[type=email],
+.login-form input[type=password] {
   width: 100%;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .login-form button {
   width: 100%;
-  padding: 0.5rem;
-  margin-top: 1rem;
+  padding: 10px;
   border: none;
-  background-color: #005f73;
+  border-radius: 4px;
+  background-color: #5cb85c;
   color: white;
-  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
 }
 
 .login-form button:hover {
-  background-color: #0a9396;
+  background-color: #4cae4c;
 }
 
-.toggle-switch {
-  position: absolute;
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Toggle switch */
+.switch {
+  position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
+  margin-bottom: 20px;
 }
 
-.toggle-switch input {
+.switch input { 
   opacity: 0;
   width: 0;
   height: 0;
 }
 
 .slider {
-  position: relative;
+  position: absolute;
   cursor: pointer;
   top: 0;
   left: 0;
@@ -64,46 +72,6 @@
 }
 
 .slider:before {
-  position: relative;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-.switch-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.switch-label {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-.switch-description {
-  margin-right: 10px; /* Adjust the spacing as needed */
-}
-
-.switch-slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.switch-slider:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -114,30 +82,6 @@
   -webkit-transition: .4s;
   transition: .4s;
 }
-
-input:checked + .switch-slider {
-  background-color: #2196F3;
-}
-
-input:focus + .switch-slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .switch-slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.switch-slider.round {
-  border-radius: 34px;
-}
-
-.switch-slider.round:before {
-  border-radius: 50%;
-}
-
 
 input:checked + .slider {
   background-color: #2196F3;
@@ -160,4 +104,38 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+/* Professor specific styles */
+.professional {
+  background-color: #f2f2f2;
+}
+
+.professional label {
+  color: #333;
+}
+
+.professional button {
+  background-color: #337ab7;
+}
+
+.professional button:hover {
+  background-color: #286090;
+}
+
+/* Student specific styles */
+.student-friendly {
+  background-color: #e6f7ff;
+}
+
+.student-friendly label {
+  color: #5c5c5c;
+}
+
+.student-friendly button {
+  background-color: #4cae4c;
+}
+
+.student-friendly button:hover {
+  background-color: #449d44;
 }

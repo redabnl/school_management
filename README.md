@@ -1,6 +1,6 @@
 # school_management
 
-### backend
+### BACKEND
 
 backend server for now with login register
 -> mvc structure with different controller for each actor in the system (admin, student, professor)
@@ -32,4 +32,42 @@ send email to all class student
 submitt a new mark for a quizz or an exam
 Update his weekly schedule (not sure if wedoing this too )
 
+
 ### FRontend
+
+### login FORM
+Component LoginForm
+  State:
+    - email: string
+    - password: string
+    - error: string
+    - isProfessor: boolean (true if professor, false if student)
+
+  Function handleToggleChange
+    Update state to reflect the change in user type (professor or student)
+    Modify form appearance based on the toggle state
+
+  Function handleEmailChange
+    Update state with email from the event target value
+
+  Function handlePasswordChange
+    Update state with password from the event target value
+
+  Function handleSubmit
+    Prevent default form submission behavior
+    Determine endpoint based on isProfessor state
+    Send POST request to the appropriate Flask server endpoint with email and password
+    On success:
+      Redirect user to their dashboard
+    On failure:
+      Update state with error message
+
+  Render
+    - Toggle switch for user type (Student / Professor)
+    - Form container with dynamic class based on isProfessor state for styling
+      - Email input field bound to state and change handler
+      - Password input field bound to state and change handler
+      - Submit button bound to submit handler
+      - Display error message if present
+
+EndComponent
