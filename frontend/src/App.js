@@ -4,7 +4,7 @@ import LoginPage from './components/Login/loginPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-// import HomeProfile from './components/profile'; // Assuming you have this component
+// import HomeProfile from './components/profile'; 
 
 function App() {
   return (
