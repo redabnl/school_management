@@ -1,0 +1,64 @@
+.login-container {
+    display: flex;
+    height: 100vh; /* Full height of the viewport */
+  }
+  
+  .home-section {
+    flex: 1;
+    background-color: #f0f0f0; /* Placeholder color, add your home picture here */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .library-btn {
+    /* Style your button to access the public library */
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .form-section {
+    flex: 1;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .toggle-btn {
+    /* Style for your role switch toggle button */
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #2196F3; /* Blue */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .submit-btn {
+    padding: 10px 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  

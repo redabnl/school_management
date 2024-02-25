@@ -10,4 +10,5 @@ backend/cahier_de_charge/
 backend/.env
 backend/venv/
 backend/tests/
+frontend/node_modules
 
