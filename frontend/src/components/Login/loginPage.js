@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './loginPage.css'; // Make sure you link the CSS file
+import { redirect } from 'react-router-dom';
 
 function LoginPage() {
   const [isStudent, setIsStudent] = useState(true);
@@ -38,6 +39,7 @@ function LoginPage() {
       const data = await response.json();
       console.log('Login successful:', data);
       // Here you could redirect the user or perform other actions upon successful login
+      redirect('/profile/profilePage.js')
     } catch (error) {
       console.error('Login failed:', error);
     }
