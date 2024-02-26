@@ -1,11 +1,10 @@
-from database import Base
-from sqlalchemy import Column, Integer, String, Date
+from app.extensions import db
 
-class Professors(Base):
-    __tablename__ = 'classes'
+class Class(db.Model):
+    __tablename__ = 'CLASSES'
 
-    class_NO = Column(Integer, primary_key=True)
-    class_title = Column(String)
-    class_date = Column(Date)
+    ID_CLASS = db.Column(db.String, primary_key=True)
+    CLASS_TITLE = db.Column(db.String)
+    CLASS_DATE = db.Column(db.Date)
     
     

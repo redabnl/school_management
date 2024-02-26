@@ -2,6 +2,13 @@ from flask import Flask
 from flask_cors import CORS
 from app.extensions import db
 from config import DevelopmentConfig
+from models.classes import Class
+from models.courses import Course
+from models.enrollements import Enrollement
+from models.professors import Professor
+from models.profsPerCourse import professor_courses
+from models.sessions import Session
+from models.students import Student
 from app.controllers.admin_controller import register_user
 from app.controllers.student_controller import login_student, search_student
 from app.controllers.professor_controller import login_professor
@@ -16,9 +23,13 @@ app = Flask(__name__)
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 app.secret_key = os.environ.get('SECRET_KEY', 'fallback_secret_key')
+
+
 db.init_app(app)
-
-
+# Create tables function
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 @app.route('/')
 def index():

@@ -4,7 +4,7 @@ from sqlalchemy import Column, String
 
 Base = declarative_base()
 
-class Students(db.Model):
+class Student(db.Model):
     __tablename__ = 'STUDENTS'  # uppercase tablename if it's defined as such in Snowflake
 
     ID_STUDENT = Column(String(100), primary_key=True)
