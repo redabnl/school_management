@@ -1,9 +1,15 @@
-# from app.extensions import db
+from app import db
+from datetime import datetime
+from sqlalchemy import Boolean, Column, Date, DateTime, Integer, String, Text
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql.schema import ForeignKey
 
-# class Users(db.Model):
-#     __abstract__ = True
-#     id_user = db.Column(db.Integer, primary_key=True)
-#     first_name = db.Column(db.String(128), nullable=False)
-#     last_name = db.Column(db.String(128), nullable=False)
-#     email = db.Column(db.String(128), unique=True, nullable=False)
-#     password_hash = db.Column(db.String(128), nullable=False)   
+class Users(db.Model):
+    __tablename__ = 'USERS'
+    UserID = db.Column(db.String(255), primary_key=True)
+    FirstName = db.Column(db.String(255))
+    LastName = db.Column(db.String(255))
+    Email = db.Column(db.String(255))
+    Password = db.Column(db.String(255))
+    UserRole = db.Column(db.String(255))
+    AdditionalInfo = db.Column(db.Text)
