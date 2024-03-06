@@ -1,34 +1,34 @@
-from flask import Flask 
-from flask_cors import CORS
-from app.extensions import db, migrate
-from config import DevelopmentConfig
-from flask_migrate import migrate
-from app.controllers.admin_controller import register_user as register_func
+# from flask import Flask 
+# from flask_cors import CORS
+# from app.extensions import db, migrate
+# from config import DevelopmentConfig
+# from flask_migrate import migrate
+# from app.controllers.admin_controller import register_user as register_func
 
-from app.models import *
-import os
+# from app.models import *
+# import os
 
-from dotenv import load_dotenv
-load_dotenv()
-
-
-app = Flask(__name__)
-
-CORS(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
-app.secret_key = os.environ.get('SECRET_KEY', 'fallback_secret_key')
-
-db.init_app(app)
-migrate.init_app(app, db)
+# from dotenv import load_dotenv
+# load_dotenv()
 
 
-@app.route('/')
-def index():
-    return "Welcome to the School Management App iRead"
+# app = Flask(__name__)
 
-@app.route('register_user', methods=['POST'])
-def registerUser():
-    return register_func()
+# CORS(app)
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
+# app.secret_key = os.environ.get('SECRET_KEY', 'fallback_secret_key')
+
+# db.init_app(app)
+# migrate.init_app(app, db)
+
+
+# @app.route('/')
+# def index():
+#     return "Welcome to the School Management App iRead"
+
+# @app.route('register_user', methods=['POST'])
+# def registerUser():
+#     return register_func()
 
 # @app.route('/register_student', methods=['POST'])
 # def register_student():

@@ -6,10 +6,10 @@ from sqlalchemy.sql.schema import ForeignKey
 
 class Users(db.Model):
     __tablename__ = 'USERS'
-    UserID = db.Column(db.String(255), primary_key=True)
-    FirstName = db.Column(db.String(255))
-    LastName = db.Column(db.String(255))
-    Email = db.Column(db.String(255))
-    Password = db.Column(db.String(255))
-    UserRole = db.Column(db.String(255))
-    AdditionalInfo = db.Column(db.Text)
+    USERID = db.Column(db.String(255), primary_key=True)
+    FIRSTNAME = db.Column(db.String(255))
+    LASTNAME = db.Column(db.String(255))
+    EMAIL = db.Column(db.String(255))
+    PASSWORD = db.Column(db.String(255))
+    USERROLE = db.Column(db.String(255))
+    ADDITIONALINFO = db.Column(db.Text)
